@@ -1,0 +1,160 @@
+{
+  "Metadata": {
+    "title": "RS Studio | AI-First Development Studio",
+    "description": "AI-first development studio — from idea to launch. Landing pages, SaaS apps, and custom AI solutions."
+  },
+  "Index": {
+    "heroHeading": "AI-first development studio.\nA new way to build systems.",
+    "heroSubheading": "From idea to launch — landing pages, SaaS apps, and AI agents. Faster, smarter, more affordable.",
+    "viewWork": "View Portfolio",
+    "startProject": "Start a Project",
+    "aboutEntityTitle": "What is RS Studio?",
+    "aboutEntityDescription": "RS Studio is an AI-first development studio specializing in full-stack web applications, SaaS platforms, and custom AI solutions. We build complete products — from concept through design and development to launch. By combining cutting-edge AI technologies with software engineering, we deliver high-quality solutions faster and at competitive prices."
+  },
+  "Navigation": {
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "pricing": "Pricing"
+  },
+  "Hero": {
+    "badge": "Open for new projects ✓"
+  },
+  "Why": {
+    "title": "Why RS Studio?",
+    "subtitle": "A different approach to development — faster, smarter, and cost-effective.",
+    "speed_title": "Fast Delivery",
+    "speed_desc": "AI-accelerated development process — projects that take months are completed in weeks.",
+    "cost_title": "Competitive Pricing",
+    "cost_desc": "High engineering efficiency that translates to significant savings compared to traditional agencies.",
+    "product_title": "Complete Product",
+    "product_desc": "From idea to launch — strategy, design, development, and support all in one place.",
+    "ai_title": "AI-Native",
+    "ai_desc": "AI isn't bolted on — it's part of the architecture. Systems built around artificial intelligence."
+  },
+  "Services": {
+    "title": "Services",
+    "subtitle": "End-to-end solutions — from a landing page to a full system.",
+    "landing_title": "Landing Page",
+    "landing_desc": "Marketing site for a product or business. Modern design, built-in SEO, high performance.",
+    "landing_timeline": "1–2 weeks",
+    "saas_title": "SaaS Application",
+    "saas_desc": "Full product: authentication, dashboard, payments, user management, and more.",
+    "saas_timeline": "4–8 weeks",
+    "aaas_title": "AaaS Application",
+    "aaas_desc": "AI-powered automation tool or agent tailored to your business needs.",
+    "aaas_timeline": "3–6 weeks",
+    "learnMore": "Learn More",
+    "faqTitle": "Frequently Asked Questions",
+    "q1": "How long does a project take?",
+    "a1": "Depends on the project type — landing page 1-2 weeks, SaaS app 4-8 weeks, custom AI system 3-6 weeks.",
+    "q2": "What technologies do you work with?",
+    "a2": "Next.js, React, Node.js, Python — plus AI integration with OpenAI, Claude, LangChain, and more.",
+    "q3": "Do you provide ongoing maintenance?",
+    "a3": "Yes, we offer support and maintenance packages for every project."
+  },
+  "Agents": {
+    "title": "AI Agents",
+    "subtitle": "10 smart agent types to supercharge your business.",
+    "support_title": "Support Agent",
+    "support_desc": "24/7 customer Q&A trained on your company docs.",
+    "lead_title": "Lead Qualifier",
+    "lead_desc": "Engages and qualifies website visitors by potential.",
+    "sales_title": "Sales Assistant",
+    "sales_desc": "CRM-connected follow-ups and deal tracking.",
+    "onboarding_title": "Onboarding Bot",
+    "onboarding_desc": "Guides new users through the setup process.",
+    "document_title": "Document Processor",
+    "document_desc": "Extracts data from PDFs, invoices, and contracts.",
+    "email_title": "Email Responder",
+    "email_desc": "Drafts and sends replies based on rules and context.",
+    "knowledge_title": "Knowledge Base",
+    "knowledge_desc": "Answers internal team questions from company docs.",
+    "content_title": "Content Generator",
+    "content_desc": "Blog posts, social content, and copy — on brand.",
+    "data_title": "Data Analyst",
+    "data_desc": "Answers business questions from your connected data.",
+    "voice_title": "Voice Agent",
+    "voice_desc": "Handles phone and WhatsApp calls via AI."
+  },
+  "HowItWorks": {
+    "title": "How It Works",
+    "subtitle": "A simple, transparent process — from discovery to launch.",
+    "step1_title": "Discovery",
+    "step1_desc": "Free consultation to understand your needs, goals, and vision.",
+    "step2_title": "Build",
+    "step2_desc": "Accelerated development with regular updates, design, and testing.",
+    "step3_title": "Launch",
+    "step3_desc": "Project goes live with full support and quality assurance."
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "subtitle": "The most advanced tools in the industry.",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "ai": "AI",
+    "database": "Database",
+    "deploy": "Deployment",
+    "automation": "Automation"
+  },
+  "Pricing": {
+    "title": "Pricing",
+    "subtitle": "Clear packages, no surprises.",
+    "landing_title": "Landing Page",
+    "landing_price": "$1,000–2,000",
+    "landing_timeline": "1–2 weeks",
+    "landing_features": "Custom design,High performance,Built-in SEO,Single page with animations,Hebrew & English support",
+    "saas_title": "SaaS Application",
+    "saas_price": "$4,000–10,000",
+    "saas_timeline": "4–8 weeks",
+    "saas_features": "Auth & user management,Custom dashboard,Payment integration,Data management,Full API",
+    "aaas_title": "AI Agent / Automation",
+    "aaas_price": "$3,000–7,000",
+    "aaas_timeline": "3–6 weeks",
+    "aaas_features": "Custom AI agent,Business automation,Integration with existing tools,Training & onboarding,Ongoing support",
+    "cta": "Let's Talk",
+    "popular": "Most Popular"
+  },
+  "Portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Selected projects we've built for our clients.",
+    "viewProject": "View Project",
+    "emptyState": "New projects coming soon — check back later!",
+    "allProjects": "All Projects"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Articles, insights, and updates from the world of development and AI.",
+    "readMore": "Read More",
+    "emptyState": "New articles on the way — follow us!"
+  },
+  "Contact": {
+    "title": "Contact",
+    "heading": "Let's talk about your next project",
+    "subheading": "Leave your details and we'll get back to you shortly, or send a WhatsApp message.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "projectType": "Project Type",
+    "projectType_landing": "Landing Page",
+    "projectType_saas": "SaaS Application",
+    "projectType_aaas": "AI Agent / Automation",
+    "projectType_other": "Other",
+    "message": "Tell us about your project",
+    "submit": "Send Message",
+    "success": "Message sent successfully! We'll get back to you soon.",
+    "whatsappCta": "Or send a WhatsApp message"
+  },
+  "Footer": {
+    "brand": "RS Studio",
+    "tagline": "AI-first development studio.",
+    "copyright": "All Rights Reserved",
+    "navigation": "Navigation",
+    "contact": "Contact"
+  },
+  "Shared": {
+    "whatsappMessage": "Hello, I'd like to learn about your development services.",
+    "contactViaWhatsapp": "Contact us via WhatsApp",
+    "available": "Open for new projects ✓"
+  }
+}

@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fafaf9;
+    --foreground: #1c1917;
+    --accent: #e85d04;
+    --accent-hover: #d45203;
+    --muted: #f5f5f4;
+    --muted-foreground: #78716c;
+    --border: #e7e5e4;
+    --card: #ffffff;
+    --card-foreground: #1c1917;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark {
+    --background: #0c0a09;
+    --foreground: #fafaf9;
+    --accent: #f97316;
+    --accent-hover: #fb923c;
+    --muted: #1c1917;
+    --muted-foreground: #a8a29e;
+    --border: #292524;
+    --card: #1c1917;
+    --card-foreground: #fafaf9;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased selection:bg-accent/20 selection:text-foreground;
+  }
+
+  /* Scroll-triggered reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+  .reveal-stagger > .reveal:nth-child(7) { transition-delay: 480ms; }
+  .reveal-stagger > .reveal:nth-child(8) { transition-delay: 560ms; }
+  .reveal-stagger > .reveal:nth-child(9) { transition-delay: 640ms; }
+  .reveal-stagger > .reveal:nth-child(10) { transition-delay: 720ms; }
 }
