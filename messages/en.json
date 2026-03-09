@@ -152,6 +152,15 @@
     "navigation": "Navigation",
     "contact": "Contact"
   },
+  "AiRecommender": {
+    "triggerTooltip": "AI Project Advisor",
+    "title": "AI Project Advisor",
+    "subtitle": "Powered by Gemini",
+    "placeholder": "Describe your project idea...",
+    "send": "Send",
+    "greeting": "Hi! 👋 I'm the RS Studio AI advisor. Tell me about your project idea and I'll recommend the best service and pricing for you.",
+    "error": "Sorry, I couldn't process your request. Please try again or contact us via WhatsApp."
+  },
   "Shared": {
     "whatsappMessage": "Hello, I'd like to learn about your development services.",
     "contactViaWhatsapp": "Contact us via WhatsApp",

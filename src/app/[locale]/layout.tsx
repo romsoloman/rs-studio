@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppCTA } from "@/components/shared/WhatsAppCTA";
+import { AiRecommender } from "@/components/shared/AiRecommender";
 import "../globals.css";
 
 const inter = Inter({
@@ -302,6 +303,7 @@ export default async function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <WhatsAppCTA />
+            <AiRecommender />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
