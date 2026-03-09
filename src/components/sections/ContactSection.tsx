@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
 export function ContactSection() {
@@ -12,96 +12,136 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In production, connect to API route or form service
     setSubmitted(true);
   };
 
   const ref = useReveal();
 
   return (
-    <section ref={ref} className="py-20 md:py-28" id="contact">
-      <div className="container max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="reveal text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">{t("heading")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subheading")}</p>
-        </div>
-
-        <div className="reveal max-w-xl mx-auto">
-          {submitted ? (
-            <div className="text-center py-12 rounded-xl border border-accent/20 bg-accent/5">
-              <CheckCircle2 className="h-12 w-12 text-accent mx-auto mb-4" />
-              <p className="text-lg font-medium">{t("success")}</p>
+    <section ref={ref} className="py-24 md:py-32" id="contact">
+      <div className="container max-w-screen-xl mx-auto px-5 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
+          {/* Left: heading + info */}
+          <div className="reveal">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-8 bg-accent" />
+              <span className="text-xs font-mono uppercase tracking-widest text-accent">Contact</span>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1.5">{t("name")}</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full h-11 px-4 rounded-md border border-border bg-background text-foreground text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                />
-              </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight mb-5">
+              {t("heading")}
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-md">
+              {t("subheading")}
+            </p>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1.5">{t("email")}</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full h-11 px-4 rounded-md border border-border bg-background text-foreground text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="projectType" className="block text-sm font-medium mb-1.5">{t("projectType")}</label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  className="w-full h-11 px-4 rounded-md border border-border bg-background text-foreground text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent appearance-none"
-                >
-                  <option value="landing">{t("projectType_landing")}</option>
-                  <option value="saas">{t("projectType_saas")}</option>
-                  <option value="aaas">{t("projectType_aaas")}</option>
-                  <option value="other">{t("projectType_other")}</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1.5">{t("message")}</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground text-sm resize-none transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-accent text-white text-sm font-medium transition-all hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            {/* Contact info */}
+            <div className="flex flex-col gap-4">
+              <a
+                href="mailto:romsoloman19@gmail.com"
+                className="inline-flex items-center gap-3 text-sm text-muted-foreground transition-colors duration-200 hover:text-accent group"
               >
-                <Send className="me-2 h-4 w-4" />
-                {t("submit")}
-              </button>
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 text-accent transition-all duration-300 group-hover:bg-accent/15 group-hover:scale-105">
+                  <Mail className="h-4 w-4" />
+                </div>
+                romsoloman19@gmail.com
+              </a>
+              <a
+                href="https://wa.me/972526841616"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm text-muted-foreground transition-colors duration-200 hover:text-accent group"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 text-accent transition-all duration-300 group-hover:bg-accent/15 group-hover:scale-105">
+                  <Phone className="h-4 w-4" />
+                </div>
+                +972-52-684-1616
+              </a>
+            </div>
+          </div>
 
-              <p className="text-center text-sm text-muted-foreground">
-                {t("whatsappCta")}{" "}
-                <a
-                  href="https://wa.me/972526841616"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent font-medium hover:underline"
+          {/* Right: form */}
+          <div className="reveal">
+            {submitted ? (
+              <div className="text-center py-16 rounded-sm border border-accent/20 bg-accent/5">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 text-accent mb-5">
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
+                <p className="text-lg font-heading font-semibold">{t("success")}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+                <div className="floating-input">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder=" "
+                  />
+                  <label htmlFor="name">{t("name")}</label>
+                </div>
+
+                <div className="floating-input">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder=" "
+                  />
+                  <label htmlFor="email">{t("email")}</label>
+                </div>
+
+                <div className="floating-input">
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    className="appearance-none"
+                    defaultValue=""
+                  >
+                    <option value="" disabled></option>
+                    <option value="landing">{t("projectType_landing")}</option>
+                    <option value="saas">{t("projectType_saas")}</option>
+                    <option value="aaas">{t("projectType_aaas")}</option>
+                    <option value="other">{t("projectType_other")}</option>
+                  </select>
+                  <label htmlFor="projectType">{t("projectType")}</label>
+                </div>
+
+                <div className="floating-input">
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    required
+                    placeholder=" "
+                    className="resize-none"
+                  />
+                  <label htmlFor="message">{t("message")}</label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="inline-flex h-13 items-center justify-center rounded-sm bg-accent text-white text-sm font-medium transition-all duration-300 hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/20 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
                 >
-                  WhatsApp →
-                </a>
-              </p>
-            </form>
-          )}
+                  <Send className="me-2 h-4 w-4" />
+                  {t("submit")}
+                </button>
+
+                <p className="text-center text-sm text-muted-foreground">
+                  {t("whatsappCta")}{" "}
+                  <a
+                    href="https://wa.me/972526841616"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent font-medium hover:underline"
+                  >
+                    WhatsApp →
+                  </a>
+                </p>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>

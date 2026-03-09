@@ -15,25 +15,38 @@ export function HowItWorksSection() {
   const ref = useReveal();
 
   return (
-    <section ref={ref} className="py-20 md:py-28">
-      <div className="container max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="reveal text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
+    <section ref={ref} className="py-24 md:py-32">
+      <div className="container max-w-screen-xl mx-auto px-5 md:px-8">
+        {/* Left-aligned header */}
+        <div className="reveal mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-accent" />
+            <span className="text-xs font-mono uppercase tracking-widest text-accent">Process</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight mb-4">{t("title")}</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl">{t("subtitle")}</p>
         </div>
 
-        <div className="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Connecting line — visible only on md+ */}
-          <div className="hidden md:block absolute top-16 left-[16.66%] right-[16.66%] h-px bg-border" />
+        {/* Vertical timeline */}
+        <div className="reveal-stagger relative max-w-2xl">
+          {/* Timeline line */}
+          <div className="timeline-line" />
 
-          {steps.map(({ key, icon: Icon, number }) => (
-            <div key={key} className="reveal relative flex flex-col items-center text-center">
-              <div className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-card border-2 border-accent text-accent mb-5">
-                <Icon className="h-6 w-6" />
+          {steps.map(({ key, icon: Icon, number }, i) => (
+            <div key={key} className="reveal relative flex gap-6 md:gap-8 pb-14 last:pb-0 group">
+              {/* Number circle */}
+              <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-accent text-white text-sm font-bold shrink-0 shadow-lg shadow-accent/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-accent/30">
+                {number}
               </div>
-              <span className="text-xs font-mono text-muted-foreground mb-2">{number}</span>
-              <h3 className="font-heading font-semibold text-lg mb-2">{t(`${key}_title`)}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{t(`${key}_desc`)}</p>
+
+              {/* Content */}
+              <div className="pt-1.5">
+                <div className="flex items-center gap-3 mb-2">
+                  <Icon className="h-4 w-4 text-accent" />
+                  <h3 className="font-heading font-semibold text-lg">{t(`${key}_title`)}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">{t(`${key}_desc`)}</p>
+              </div>
             </div>
           ))}
         </div>

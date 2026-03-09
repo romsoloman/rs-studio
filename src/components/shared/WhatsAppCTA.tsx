@@ -10,7 +10,6 @@ export function WhatsAppCTA() {
   const message = encodeURIComponent(t("whatsappMessage"));
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
-  // RTL: bottom-left, LTR: bottom-right
   const positionClass = locale === "he" ? "left-5" : "right-5";
 
   return (
@@ -18,14 +17,14 @@ export function WhatsAppCTA() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-5 ${positionClass} z-50 group`}
+      className={`fixed bottom-5 ${positionClass} z-50 group animate-slide-in-up`}
       aria-label={t("contactViaWhatsapp")}
     >
-      <span className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg shadow-[#25D366]/25 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/30 active:scale-95">
+      <span className="relative flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg shadow-[#25D366]/25 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/30 active:scale-95 pulse-ring cursor-pointer">
         <MessageCircle size={26} />
       </span>
       {/* Tooltip */}
-      <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card text-card-foreground text-xs font-medium px-3 py-1.5 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-border">
+      <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card text-card-foreground text-xs font-medium px-3 py-1.5 rounded-sm shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-border">
         {t("contactViaWhatsapp")}
       </span>
     </a>

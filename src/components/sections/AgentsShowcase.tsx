@@ -21,31 +21,71 @@ const agents = [
   { key: "voice", icon: Phone },
 ] as const;
 
+function AgentCard({ agentKey, icon: Icon, t }: { agentKey: string; icon: React.ElementType; t: (key: string) => string }) {
+  return (
+    <div className="group flex-shrink-0 w-[260px] rounded-sm border border-border bg-card p-5 transition-all duration-300 hover:shadow-lg hover:border-accent/30 hover:-translate-y-0.5 cursor-pointer">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-accent/10 text-accent transition-all duration-300 group-hover:bg-accent/15 group-hover:scale-110">
+          <Icon className="h-4 w-4" />
+        </div>
+        <h3 className="font-medium text-sm">{t(`${agentKey}_title`)}</h3>
+      </div>
+      <p className="text-xs text-muted-foreground leading-relaxed">{t(`${agentKey}_desc`)}</p>
+    </div>
+  );
+}
+
 export function AgentsShowcase() {
   const t = useTranslations("Agents");
   const ref = useReveal();
 
+  const firstRow = agents.slice(0, 5);
+  const secondRow = agents.slice(5);
+
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-muted/30">
-      <div className="container max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="reveal text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">{t("title")}</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("subtitle")}</p>
+    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-muted/40 dark:bg-muted/20 pointer-events-none" />
+
+      <div className="relative z-10">
+        {/* Header */}
+        <div className="container max-w-screen-xl mx-auto px-5 md:px-8">
+          <div className="reveal mb-14">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-8 bg-accent" />
+              <span className="text-xs font-mono uppercase tracking-widest text-accent">AI Agents</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight mb-4">{t("title")}</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl">{t("subtitle")}</p>
+          </div>
         </div>
 
-        <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {agents.map(({ key, icon: Icon }) => (
-            <div
-              key={key}
-              className="reveal group rounded-lg border border-border bg-card p-5 transition-all hover:shadow-md hover:border-accent/20"
-            >
-              <div className="flex items-center justify-center w-10 h-10 rounded-md bg-accent/10 text-accent mb-3 transition-colors group-hover:bg-accent/15">
-                <Icon className="h-4.5 w-4.5" />
+        {/* Marquee rows */}
+        <div className="reveal space-y-4">
+          {/* Gradient fade edges */}
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none dark:from-[#0c0a09]" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none dark:from-[#0c0a09]" />
+            <div className="overflow-hidden">
+              <div className="marquee-track flex gap-4 w-max">
+                {/* Duplicate cards for seamless loop */}
+                {[...firstRow, ...firstRow].map((agent, i) => (
+                  <AgentCard key={`${agent.key}-${i}`} agentKey={agent.key} icon={agent.icon} t={t} />
+                ))}
               </div>
-              <h3 className="font-medium text-sm mb-1">{t(`${key}_title`)}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{t(`${key}_desc`)}</p>
             </div>
-          ))}
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none dark:from-[#0c0a09]" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none dark:from-[#0c0a09]" />
+            <div className="overflow-hidden">
+              <div className="marquee-track flex gap-4 w-max" style={{ animationDirection: "reverse", animationDuration: "35s" }}>
+                {[...secondRow, ...secondRow].map((agent, i) => (
+                  <AgentCard key={`${agent.key}-${i}`} agentKey={agent.key} icon={agent.icon} t={t} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
