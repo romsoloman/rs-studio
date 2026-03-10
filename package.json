@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:e2e": "npm run build && playwright test"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
