@@ -5,12 +5,12 @@ test.describe('Availability Badge', () => {
     await page.goto('/en');
     
     // The badge text
-    const badge = page.locator('text=Currently taking clients');
+    const badge = page.locator('text=/Accepting new projects|Available for select partnerships/');
     await expect(badge).toBeVisible();
     
     // Verifying it has the green dot inside (the span should be visible if the container is rendered)
-    const container = page.locator('div.inline-flex:has-text("Currently taking clients")');
-    const greenDot = container.locator('span.bg-green-500');
+    const container = page.locator('div.inline-flex').filter({ hasText: /Accepting new projects|Available for select partnerships/ });
+    const greenDot = container.locator('span.bg-accent').first();
     await expect(greenDot).toBeVisible();
   });
 });
