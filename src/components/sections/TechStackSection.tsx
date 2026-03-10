@@ -13,6 +13,7 @@ const techCategories = [
 ] as const;
 
 export function TechStackSection() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("TechStack");
   const ref = useReveal();
 

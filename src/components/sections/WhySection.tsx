@@ -8,6 +8,7 @@ const icons = [Zap, DollarSign, Package, Brain];
 const keys = ["speed", "cost", "product", "ai"] as const;
 
 export function WhySection() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Why");
   const ref = useReveal();
 

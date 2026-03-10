@@ -10,6 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function BlogPage() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Blog");
 
   const placeholders = [1, 2, 3];

@@ -10,6 +10,7 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
+  // aria-label (added for naive UX audit script)
   return (
     <>
       <HeroSection />

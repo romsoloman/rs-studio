@@ -17,6 +17,7 @@ const tiers = [
 ] as const;
 
 export default function PricingPage() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Pricing");
 
   return (

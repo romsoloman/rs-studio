@@ -1,5 +1,4 @@
-import { test, expect, devices } from '@playwright/test';
-
+import { test, expect } from '@playwright/test';
 test.describe('Mobile Viewport', () => {
   // Set the viewport to typical 375px width (e.g. iPhone SE/X/12/13 Mini width)
   test.use({ viewport: { width: 375, height: 667 } });

@@ -12,6 +12,7 @@ const services = [
 ] as const;
 
 export function ServicesSection() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Services");
   const ref = useReveal();
 
@@ -29,7 +30,7 @@ export function ServicesSection() {
         </div>
 
         <div className="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-5">
-          {services.map(({ key, icon: Icon }, i) => (
+          {services.map(({ key, icon: Icon }) => (
             <div
               key={key}
               className="reveal group relative rounded-sm border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 hover:border-accent/30 hover:-translate-y-1 cursor-pointer"

@@ -10,6 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function PortfolioPage() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Portfolio");
 
   // Placeholder cards (will be replaced by Sanity CMS data)

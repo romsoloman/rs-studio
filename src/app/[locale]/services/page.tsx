@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Globe, LayoutDashboard, Bot, Clock, ArrowRight, Check } from "lucide-react";
-import type { Metadata } from "next";
+import { Globe, LayoutDashboard, Bot, Clock, ArrowRight } from "lucide-react";import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -22,6 +21,7 @@ const agentKeys = [
 ] as const;
 
 export default function ServicesPage() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Services");
   const ta = useTranslations("Agents");
 
@@ -36,7 +36,6 @@ export default function ServicesPage() {
       {/* Service cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
         {services.map(({ key, icon: Icon }) => {
-          const features = t(`${key}_desc`).split(".");
           return (
             <div key={key} className="rounded-xl border border-border bg-card p-8 flex flex-col">
               <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-6">

@@ -34,7 +34,7 @@ export function HowItWorksSection() {
           {/* Timeline line */}
           <div className="timeline-line" />
 
-          {steps.map(({ key, icon: Icon, number }, i) => (
+          {steps.map(({ key, icon: Icon, number }) => (
             <div key={key} className="reveal relative flex gap-6 md:gap-8 pb-14 last:pb-0 group">
               {/* Number circle */}
               <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-accent text-white text-sm font-bold shrink-0 shadow-lg shadow-accent/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-accent/30">

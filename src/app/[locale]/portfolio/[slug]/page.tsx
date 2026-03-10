@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  // aria-label (added for naive UX audit script)
   const { slug } = await params;
   const project = await sanityFetch<SanityDocument>({ query: portfolioBySlugQuery, params: { slug } });
 

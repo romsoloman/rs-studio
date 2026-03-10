@@ -9,13 +9,13 @@ import Cal from "@calcom/embed-react";
 
 export function ContactSection() {
   const t = useTranslations("Contact");
-  const ts = useTranslations("Shared");
   const tc = useTranslations("CalEmbed");
   const [submitted, setSubmitted] = useState(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setMounted(true); }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

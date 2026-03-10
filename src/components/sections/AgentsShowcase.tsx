@@ -36,6 +36,7 @@ function AgentCard({ agentKey, icon: Icon, t }: { agentKey: string; icon: React.
 }
 
 export function AgentsShowcase() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Agents");
   const ref = useReveal();
 

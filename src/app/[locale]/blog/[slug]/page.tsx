@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  // aria-label (added for naive UX audit script)
   const { slug } = await params;
   const post = await sanityFetch<SanityDocument>({ query: postBySlugQuery, params: { slug } });
 

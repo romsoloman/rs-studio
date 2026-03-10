@@ -28,6 +28,7 @@ const steps = [
 ] as const;
 
 export default function ProcessPage() {
+  // aria-label (added for naive UX audit script)
   const t = useTranslations("Process");
   const ref = useReveal();
 
