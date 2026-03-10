@@ -1,6 +1,11 @@
 import type { MetadataRoute } from 'next'
+import { sanityFetch } from "@/sanity/lib/fetch"
+import { groq } from "next-sanity"
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const portfolioSlugsQuery = groq`*[_type == "portfolio"]{ "slug": slug.current, _updatedAt }`
+const postSlugsQuery = groq`*[_type == "post"]{ "slug": slug.current, "publishedAt": publishedAt }`
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rsstudio.dev'
 
   const routes = [
@@ -35,9 +40,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // TODO: Add dynamic portfolio/blog entries from Sanity CMS
-  // const portfolioItems = await sanityFetch<{slug: string}[]>({ query: portfolioSlugsQuery })
-  // const blogPosts = await sanityFetch<{slug: string}[]>({ query: postSlugsQuery })
+  try {
+    const portfolioItems = await sanityFetch<{slug: string, _updatedAt: string}[]>({ query: portfolioSlugsQuery })
+    const blogPosts = await sanityFetch<{slug: string, publishedAt: string}[]>({ query: postSlugsQuery })
+
+    for (const item of portfolioItems || []) {
+      if (!item.slug) continue;
+      for (const locale of locales) {
+        sitemapEntries.push({
+          url: `${baseUrl}/${locale}/portfolio/${item.slug}`,
+          lastModified: item._updatedAt ? new Date(item._updatedAt) : now,
+          changeFrequency: 'monthly',
+          priority: 0.6,
+          alternates: {
+            languages: {
+              he: `${baseUrl}/he/portfolio/${item.slug}`,
+              en: `${baseUrl}/en/portfolio/${item.slug}`,
+            },
+          },
+        })
+      }
+    }
+
+    for (const post of blogPosts || []) {
+      if (!post.slug) continue;
+      for (const locale of locales) {
+        sitemapEntries.push({
+          url: `${baseUrl}/${locale}/blog/${post.slug}`,
+          lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+          changeFrequency: 'weekly',
+          priority: 0.7,
+          alternates: {
+            languages: {
+              he: `${baseUrl}/he/blog/${post.slug}`,
+              en: `${baseUrl}/en/blog/${post.slug}`,
+            },
+          },
+        })
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch sanity slugs for sitemap:", error)
+  }
 
   return sitemapEntries
 }
