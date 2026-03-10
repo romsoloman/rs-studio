@@ -42,7 +42,7 @@ test.describe('Contact Form', () => {
     await page.goto('/en/contact');
     
     // Check for the Cal.com label and the OR separator
-    await expect(page.locator('text=Book a free 15-min call')).toBeVisible();
-    await expect(page.locator('text=or send a message')).toBeVisible();
+    await expect(page.locator('text=Book your free strategy session')).toBeVisible();
+    await expect(page.locator('text=or send us an email')).toBeVisible();
   });
 });

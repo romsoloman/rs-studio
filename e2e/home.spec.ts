@@ -9,11 +9,11 @@ test.describe('Home Page', () => {
     await expect(h1).toBeVisible();
     
     // Ensure English text from navigation or badge is present
-    await expect(page.locator('text=/Open for new projects/i >> visible=true').first()).toBeVisible();
+    await expect(page.locator('text=/Accepting new projects/i >> visible=true').first()).toBeVisible();
 
     // Verify FAQ section translates properly
     await expect(page.locator('text=/Frequently Asked Questions/i >> visible=true').first()).toBeVisible();
-    await expect(page.locator('text=/How long does a project take/i >> visible=true').first()).toBeVisible();
+    await expect(page.locator('text=/How fast do you really ship/i >> visible=true').first()).toBeVisible();
   });
 
   test('should load in Hebrew', async ({ page }) => {
@@ -24,10 +24,10 @@ test.describe('Home Page', () => {
     await expect(h1).toBeVisible();
     
     // Ensure Hebrew text from badge is present
-    await expect(page.locator('text=/פתוח לפרויקטים חדשים/i >> visible=true').first()).toBeVisible();
+    await expect(page.locator('text=/זמינים לפרויקטים חדשים/i >> visible=true').first()).toBeVisible();
 
     // Verify FAQ section translates properly
     await expect(page.locator('text=/שאלות נפוצות/i >> visible=true').first()).toBeVisible();
-    await expect(page.locator('text=/כמה זמן לוקח/i >> visible=true').first()).toBeVisible();
+    await expect(page.locator('text=/באיזו מהירות אתם באמת משחררים לשוק/i >> visible=true').first()).toBeVisible();
   });
 });
