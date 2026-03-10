@@ -67,6 +67,23 @@ The project follows a professional branching strategy:
 
 Every Pull Request triggers an automated **CI suite** (Linting, Type-checking, Playwright tests).
 
+## 📦 Release Management (GitOps)
+
+We use a professional GitOps flow to promote code from `staging` to `main`. This is handled entirely through **GitHub Actions**:
+
+1.  Navigate to your repository on GitHub.
+2.  Click on the **Actions** tab.
+3.  Select the **"Release (Staging to Main)"** workflow on the left side.
+4.  Click the **"Run workflow"** button.
+5.  Select the **Version Increment** (Patch, Minor, or Major).
+6.  Click **"Run workflow"**.
+
+The automation will:
+-   Merge `staging` into `main`.
+-   Calculate and create a new **Git Tag** (SemVer).
+-   Update `CHANGELOG.md` with recent commits.
+-   Deploy the release to **Vercel Production**.
+
 ## 📄 License
 
 This project is private and intended for portfolio display. All rights reserved by [RS Studio / Rom Soloman](https://rsstudio.dev).

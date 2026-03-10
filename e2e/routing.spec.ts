@@ -8,7 +8,7 @@ test.describe('i18n Routing', () => {
     await expect(page).toHaveURL(/\/en/);
     
     // Check for the availability badge in English
-    await expect(page.locator('text=Currently taking clients')).toBeVisible();
+    await expect(page.locator('text=/Accepting new projects|Available for select partnerships/')).toBeVisible();
   });
 
   test('should allow switching to Hebrew', async ({ page }) => {
@@ -23,8 +23,8 @@ test.describe('i18n Routing', () => {
     await expect(page).toHaveURL(/\/he/);
     
     // Check for the availability badge in Hebrew
-    // "זמין לפרויקטים חדשים" is "Currently taking clients" in he.json
-    await expect(page.locator('text=זמין לפרויקטים חדשים')).toBeVisible();
+    // "זמינים לפרויקטים חדשים ✓" is the current version
+    await expect(page.locator('text=/זמינים לפרויקטים חדשים|זמינים לשותפויות נבחרות/')).toBeVisible();
   });
 
   test('all nav links resolve without 404', async ({ page }) => {
