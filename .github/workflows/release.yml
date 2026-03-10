@@ -1,0 +1,102 @@
+name: Release (Staging to Main)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version Increment'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  release:
+    name: Production Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed for tags and history
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Git Configuration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Calculate New Version
+        id: versioning
+        run: |
+          # Get last tag or default
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Current version: $LAST_TAG"
+          
+          # Strip 'v' and split
+          VERSION=${LAST_TAG#v}
+          IFS='.' read -ra ADDR <<< "$VERSION"
+          MAJOR=${ADDR[0]}
+          MINOR=${ADDR[1]}
+          PATCH=${ADDR[2]}
+          
+          # Increment based on input
+          case "${{ github.event.inputs.version_type }}" in
+            patch) PATCH=$((PATCH + 1)) ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+          esac
+          
+          NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo "Promoting staging to $NEW_TAG"
+
+      - name: Merge Staging into Main
+        run: |
+          git checkout main
+          git pull origin main
+          git merge origin/staging --no-ff -m "chore: release ${{ env.NEW_TAG }}"
+
+      - name: Update CHANGELOG.md
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          TEMP_CHLOG=$(mktemp)
+          echo -e "## [${{ env.NEW_TAG }}] - ${DATE}\n" > "$TEMP_CHLOG"
+          git log "${LAST_TAG}..staging" --oneline --pretty=format:"- %s" >> "$TEMP_CHLOG"
+          echo -e "\n" >> "$TEMP_CHLOG"
+          
+          if [ -f CHANGELOG.md ]; then
+            cat CHANGELOG.md >> "$TEMP_CHLOG"
+          fi
+          mv "$TEMP_CHLOG" CHANGELOG.md
+          
+          git add CHANGELOG.md
+          git commit --amend --no-edit
+
+      - name: Tag and Push
+        run: |
+          git tag -a "${{ env.NEW_TAG }}" -m "Release ${{ env.NEW_TAG }}"
+          git push origin main --follow-tags
+
+      - name: Setup Node.js (for Vercel Deploy)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+        
+      - name: Deploy to Vercel (Production)
+        run: |
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

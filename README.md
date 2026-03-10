@@ -67,21 +67,22 @@ The project follows a professional branching strategy:
 
 Every Pull Request triggers an automated **CI suite** (Linting, Type-checking, Playwright tests).
 
-## 📦 Release Management
+## 📦 Release Management (GitOps)
 
-To promote code from `staging` to `main` and create a new version tag:
+We use a professional GitOps flow to promote code from `staging` to `main`. This is handled entirely through **GitHub Actions**:
 
-1.  Ensure you are on the `staging` branch.
-2.  Run the release script:
-    ```bash
-    ./scripts/release.sh
-    ```
-3.  Follow the prompts to select the version increment (Patch, Minor, or Major).
-4.  The script will automatically:
-    -   Merge `staging` into `main`.
-    -   Update `CHANGELOG.md`.
-    -   Create a Git tag.
-    -   Push to origin (triggering the Production deployment).
+1.  Navigate to your repository on GitHub.
+2.  Click on the **Actions** tab.
+3.  Select the **"Release (Staging to Main)"** workflow on the left side.
+4.  Click the **"Run workflow"** button.
+5.  Select the **Version Increment** (Patch, Minor, or Major).
+6.  Click **"Run workflow"**.
+
+The automation will:
+-   Merge `staging` into `main`.
+-   Calculate and create a new **Git Tag** (SemVer).
+-   Update `CHANGELOG.md` with recent commits.
+-   Deploy the release to **Vercel Production**.
 
 ## 📄 License
 
