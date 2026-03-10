@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Send, CheckCircle2, Mail, Phone, MapPin } from "lucide-react";
+import { useTheme } from "next-themes";
+import Cal from "@calcom/embed-react";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
   const ts = useTranslations("Shared");
+  const tc = useTranslations("CalEmbed");
   const [submitted, setSubmitted] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +26,30 @@ export default function ContactPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-4">{t("heading")}</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("subheading")}</p>
+      </div>
+
+      {/* Cal.com Embed */}
+      <div className="max-w-2xl mx-auto mb-12">
+        <p className="text-sm font-medium mb-4 text-center">{tc("calLabel")}</p>
+        {mounted && (
+          <Cal
+            calLink="romsoloman/qualification"
+            config={{
+              layout: "month_view",
+              theme: resolvedTheme === "dark" ? "dark" : "light",
+            }}
+            style={{ width: "100%", minHeight: "320px", overflow: "auto" }}
+          />
+        )}
+      </div>
+
+      {/* OR separator */}
+      <div className="flex items-center gap-4 max-w-2xl mx-auto mb-12">
+        <div className="flex-1 h-px bg-border" />
+        <span className="text-xs text-muted-foreground uppercase tracking-widest">
+          {tc("orSeparator")}
+        </span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-4xl mx-auto">

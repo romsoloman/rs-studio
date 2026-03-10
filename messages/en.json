@@ -165,5 +165,52 @@
     "whatsappMessage": "Hello, I'd like to learn about your development services.",
     "contactViaWhatsapp": "Contact us via WhatsApp",
     "available": "Open for new projects ✓"
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "faq_q1": "How long does a project take?",
+    "faq_a1": "Landing page: 1–2 weeks. SaaS: 4–8 weeks. AaaS: 3–6 weeks.",
+    "faq_q2": "How much does it cost?",
+    "faq_a2": "Landing pages from $800. SaaS MVPs from $3,000. AaaS apps from $2,500.",
+    "faq_q3": "Do I need a technical background?",
+    "faq_a3": "No. You bring the idea — I handle everything technical.",
+    "faq_q4": "What if I don't have a design or brand?",
+    "faq_a4": "Basic brand direction is included. Full identity can be scoped in.",
+    "faq_q5": "How do we communicate?",
+    "faq_a5": "Primarily WhatsApp. Weekly updates every Monday. Milestone reviews via Loom.",
+    "faq_q6": "Can you add AI to my existing system?",
+    "faq_a6": "Yes. AI agents can be added to existing products or built standalone.",
+    "faq_q7": "What happens after launch?",
+    "faq_a7": "30-day bug warranty included. Optional monthly maintenance available.",
+    "faq_q8": "Do you work with small businesses?",
+    "faq_a8": "Yes — that's the primary focus. Fast, lean, no agency overhead."
+  },
+  "CalEmbed": {
+    "calLabel": "Book a free 15-min call",
+    "orSeparator": "or send a message"
+  },
+  "Process": {
+    "title": "Our Process",
+    "subtitle": "From first contact to growth — every step of the journey, transparent and structured.",
+    "step1_title": "First Contact",
+    "step1_desc": "Fill the form or WhatsApp, reply within 1 hour.",
+    "step2_title": "Qualification Call (15 min)",
+    "step2_desc": "Quick call to check project and budget fit.",
+    "step3_title": "Discovery Session (45 min)",
+    "step3_desc": "Deep dive into goals, features, success criteria.",
+    "step4_title": "Proposal",
+    "step4_desc": "Detailed scope, timeline, fixed price within 48 hours.",
+    "step5_title": "Contract + Deposit",
+    "step5_desc": "Sign, pay 50% upfront, work begins.",
+    "step6_title": "Kickoff",
+    "step6_desc": "Collect assets, shared workspace, align on milestones.",
+    "step7_title": "Build",
+    "step7_desc": "Weekly updates, milestone reviews, your feedback each stage.",
+    "step8_title": "Launch",
+    "step8_desc": "Final approval, 50% final payment, go live, 30-day warranty.",
+    "step9_title": "Growth",
+    "step9_desc": "Maintenance, AI add-ons, referrals.",
+    "cta": "Start Your Project",
+    "seeFullProcess": "See full process →"
   }
 }

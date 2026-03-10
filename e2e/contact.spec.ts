@@ -5,9 +5,9 @@ test.describe('Contact Form', () => {
     await page.goto('/en/contact');
     
     // Verify form elements exist
-    const nameInput = page.locator('input[id="name"]');
-    const emailInput = page.locator('input[id="email"]');
-    const messageInput = page.locator('textarea[id="message"]');
+    const nameInput = page.locator('input[id="contact-name"]');
+    const emailInput = page.locator('input[id="contact-email"]');
+    const messageInput = page.locator('textarea[id="contact-message"]');
     const submitBtn = page.locator('button[type="submit"]');
 
     await expect(nameInput).toBeVisible();
@@ -36,5 +36,13 @@ test.describe('Contact Form', () => {
     // Ensure the page is still active.
     const h1 = page.locator('h1');
     await expect(h1).toBeVisible();
+  });
+
+  test('should render Cal.com embed wrapper', async ({ page }) => {
+    await page.goto('/en/contact');
+    
+    // Check for the Cal.com label and the OR separator
+    await expect(page.locator('text=Book a free 15-min call')).toBeVisible();
+    await expect(page.locator('text=or send a message')).toBeVisible();
   });
 });

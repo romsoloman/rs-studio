@@ -73,11 +73,35 @@ Goal: Convert visitors into leads via WhatsApp and contact form.
 | 2 | **Why RS Studio** | 4 differentiators vs traditional dev/freelancer |
 | 3 | **Services** | 3 cards: Landing Page / SaaS App / AaaS App |
 | 4 | **AI Agents Showcase** | Grid of 10 AI agent add-ons offered |
-| 5 | **How It Works** | 3-step: Discovery → Build → Launch |
+| 5 | **How It Works** | 3-step: Discovery → Build → Launch + link to /process |
 | 6 | **Tech Stack** | Logo grid of all technologies |
 | 7 | **Pricing** | Service tiers with clear packages |
 | 8 | **Portfolio Preview** | Latest 3 projects (CMS-managed, placeholder at launch) |
-| 9 | **Contact** | Form + WhatsApp floating button |
+| 9 | **FAQ** | 8 questions — kills objections before contact |
+| 10 | **Contact** | Cal.com booking embed + form + WhatsApp floating button |
+
+### Section 9 — FAQ Content (HE + EN)
+
+| Question (EN) | Answer (EN) |
+|---|---|
+| How long does a project take? | Landing page: 1–2 weeks. SaaS app: 4–8 weeks. AaaS app: 3–6 weeks. Timeline is fixed at kickoff. |
+| How much does it cost? | Landing pages from $800. SaaS MVPs from $3,000. AaaS apps from $2,500. Exact price after discovery call. |
+| Do I need a technical background? | No. I handle everything technical. You bring the business idea — I handle the rest. |
+| What if I don't have a design or brand? | No problem. Basic brand direction is included. For full brand identity, we can scope it in. |
+| How do we communicate during the project? | Primarily WhatsApp. Weekly updates every Monday. Milestone reviews via Loom video. |
+| Can you add AI to my existing system? | Yes. AI agent add-ons can be integrated into existing products or built standalone. |
+| What happens after launch? | 30-day bug warranty included. Optional monthly maintenance available. |
+| Do you work with startups and small businesses? | Yes — that's the primary focus. Fast, lean, no agency overhead. |
+
+### Section 10 — Contact Content
+
+- **Cal.com embed** — inline booking widget for qualification call
+  - Event: `cal.com/romsoloman/qualification` (15 min)
+  - Embed style: inline (not popup)
+  - Label above embed: "בחר זמן לשיחת היכרות חינמית" / "Book a free 15-min call"
+- **OR separator** — "או שלח הודעה" / "or send a message"
+- **Contact form** — name, email, project type (dropdown), message, submit
+- **WhatsApp direct link** — below form: "מעדיף וואטסאפ? לחץ כאן" / "Prefer WhatsApp? Click here"
 
 ---
 
@@ -88,7 +112,27 @@ Goal: Convert visitors into leads via WhatsApp and contact form.
 | `/services` | Full services detail page |
 | `/portfolio` | All case studies (Sanity CMS) |
 | `/blog` | HE + EN articles (Sanity CMS) |
-| `/contact` | Dedicated contact page |
+| `/process` | Full 9-stage client engagement flow (client-facing) |
+| `/contact` | Dedicated contact page with Cal.com embed + form |
+
+### `/process` Page — Content Breakdown
+
+**Purpose:** Show potential clients exactly how working with RS Studio looks, step by step.
+Reduces anxiety, builds trust, filters serious clients. Linked from "How It Works" section on home.
+
+| Step | Title (EN) | Title (HE) | Description |
+|---|---|---|---|
+| 1 | Lead & First Contact | יצירת קשר ראשונית | Fill the form or WhatsApp — response within 1 hour |
+| 2 | Qualification Call (15 min) | שיחת היכרות | Quick call to understand the project and budget fit |
+| 3 | Discovery Session (45 min) | סשן גילוי | Deep dive into business goals, features, and success criteria |
+| 4 | Proposal | הצעת מחיר | Detailed scope, timeline, and fixed price — within 48 hours |
+| 5 | Contract + Deposit | חוזה ומקדמה | Sign, pay 50% upfront, work begins |
+| 6 | Kickoff | קיקאוף | Collect assets, set up shared workspace, align on milestones |
+| 7 | Build | פיתוח | Weekly updates, milestone reviews, your feedback at each stage |
+| 8 | Launch | השקה | Final approval, 50% final payment, go live, 30-day warranty |
+| 9 | Growth | צמיחה | Maintenance, AI add-ons, referrals |
+
+**Design note:** Render as a vertical timeline — numbered steps with icons, alternating left/right on desktop, stacked on mobile.
 
 ---
 
@@ -142,15 +186,42 @@ Goal: Convert visitors into leads via WhatsApp and contact form.
 
 ## 10. Contact & CTA
 
-- **Floating WhatsApp button** — visible on all pages, sticky
+- **Floating WhatsApp button** — visible on all pages, sticky scroll
+- **Cal.com booking embed** — inline on home (section 10) and `/contact` page
+  - Event slug: `qualification` (15 min, free)
+  - Embed via Cal.com `@calcom/embed-react` package
 - **Contact form** — name, email, project type (dropdown), message
 - **Availability badge** — in hero: "פתוח לפרויקטים חדשים ✓" / "Open for new projects ✓"
+  - Controlled via Sanity CMS (`site settings → availability`)
 - **Email:** romsoloman19@gmail.com
 - **WhatsApp:** +972526841616
 
+### Cal.com embed implementation note
+```tsx
+// Install: npm install @calcom/embed-react
+import { Cal } from "@calcom/embed-react";
+
+<Cal
+  calLink="romsoloman/qualification"
+  style={{ width: "100%", height: "100%", overflow: "scroll" }}
+  config={{ layout: "month_view", theme: "dark" }}
+/>
+```
+
 ---
 
-## 11. CMS Strategy (Sanity)
+## 11. Dependencies to Install
+
+```bash
+npm install @calcom/embed-react   # Cal.com booking embed
+npm install next-intl             # i18n RTL/LTR
+npm install next-sanity           # Sanity CMS client
+npm install @sanity/image-url     # Sanity image helper
+```
+
+---
+
+## 12. CMS Strategy (Sanity)
 
 | Content Type | Fields |
 |---|---|
@@ -163,11 +234,14 @@ Goal: Convert visitors into leads via WhatsApp and contact form.
 
 ---
 
-## 12. Success Criteria
+## 13. Success Criteria
 
 - [ ] Loads in Hebrew by default with correct RTL layout
 - [ ] `/en` switches to English LTR layout
-- [ ] All 9 home page sections render correctly
+- [ ] All 10 home page sections render correctly
+- [ ] FAQ section renders all 8 questions, expandable accordion
+- [ ] Cal.com embed loads on home page (section 10) and `/contact`
+- [ ] `/process` page renders 9-step vertical timeline
 - [ ] WhatsApp button visible and functional on all pages
 - [ ] Contact form submits successfully
 - [ ] Sanity Studio accessible and content editable
@@ -175,3 +249,4 @@ Goal: Convert visitors into leads via WhatsApp and contact form.
 - [ ] Mobile-responsive at 375px, 768px, 1024px, 1440px
 - [ ] Lighthouse score: Performance ≥ 90, SEO ≥ 95
 - [ ] No layout shift on locale switch
+- [ ] Cal.com embed respects dark/light mode theme

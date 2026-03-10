@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { Search, Hammer, Rocket } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 
@@ -12,6 +13,7 @@ const steps = [
 
 export function HowItWorksSection() {
   const t = useTranslations("HowItWorks");
+  const tp = useTranslations("Process");
   const ref = useReveal();
 
   return (
@@ -50,7 +52,18 @@ export function HowItWorksSection() {
             </div>
           ))}
         </div>
+
+        {/* See full process link */}
+        <div className="reveal mt-10">
+          <Link
+            href="/process"
+            className="inline-flex items-center text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+          >
+            {tp("seeFullProcess")}
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
+

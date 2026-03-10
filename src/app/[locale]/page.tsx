@@ -6,6 +6,7 @@ import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { PortfolioPreview } from "@/components/sections/PortfolioPreview";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <TechStackSection />
       <PricingSection />
       <PortfolioPreview />
+      <FaqSection />
       <ContactSection />
     </>
   );

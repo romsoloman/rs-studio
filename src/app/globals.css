@@ -327,3 +327,49 @@
   background-color: var(--border);
   border-radius: 9999px;
 }
+
+/* ─── FAQ Accordion ─── */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-answer > p {
+  overflow: hidden;
+}
+
+.faq-answer-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-closed {
+  grid-template-rows: 0fr;
+}
+
+.faq-answer-closed > p {
+  padding-bottom: 0 !important;
+}
+
+/* ─── Process Timeline (alternating) ─── */
+.process-timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, var(--accent), var(--border));
+}
+
+@media (max-width: 767px) {
+  .process-timeline-line {
+    left: 23px;
+    transform: none;
+  }
+  [dir="rtl"] .process-timeline-line {
+    left: auto;
+    right: 23px;
+  }
+}
+
