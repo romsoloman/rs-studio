@@ -67,6 +67,22 @@ The project follows a professional branching strategy:
 
 Every Pull Request triggers an automated **CI suite** (Linting, Type-checking, Playwright tests).
 
+## 📦 Release Management
+
+To promote code from `staging` to `main` and create a new version tag:
+
+1.  Ensure you are on the `staging` branch.
+2.  Run the release script:
+    ```bash
+    ./scripts/release.sh
+    ```
+3.  Follow the prompts to select the version increment (Patch, Minor, or Major).
+4.  The script will automatically:
+    -   Merge `staging` into `main`.
+    -   Update `CHANGELOG.md`.
+    -   Create a Git tag.
+    -   Push to origin (triggering the Production deployment).
+
 ## 📄 License
 
 This project is private and intended for portfolio display. All rights reserved by [RS Studio / Rom Soloman](https://rsstudio.dev).
