@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Send, CheckCircle2, Mail, Phone, MapPin } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -8,7 +8,6 @@ export default function ContactPage() {
   const t = useTranslations("Contact");
   const ts = useTranslations("Shared");
   const [submitted, setSubmitted] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Send, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
@@ -8,7 +8,6 @@ import { useTheme } from "next-themes";
 export function ContactSection() {
   const t = useTranslations("Contact");
   const [submitted, setSubmitted] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

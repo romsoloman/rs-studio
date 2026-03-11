@@ -38,11 +38,4 @@ test.describe('Contact Form', () => {
     await expect(h1).toBeVisible();
   });
 
-  test('should render Cal.com embed wrapper', async ({ page }) => {
-    await page.goto('/en/contact');
-    
-    // Check for the Cal.com label and the OR separator
-    await expect(page.locator('text=Book your free strategy session')).toBeVisible();
-    await expect(page.locator('text=or send us an email')).toBeVisible();
-  });
 });
