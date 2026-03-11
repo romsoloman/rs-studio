@@ -27,14 +27,12 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "top-3 left-3 right-3 md:left-6 md:right-6"
-          : "top-0 left-0 right-0"
+      className={`fixed top-0 left-0 right-0 z-50 flex justify-center p-0 transition-all duration-500 ${
+        scrolled ? "pt-3 px-3 md:px-6" : ""
       }`}
     >
       <div
-        className={`mx-auto transition-all duration-500 ${
+        className={`w-full transition-all duration-500 ${
           scrolled
             ? "max-w-screen-xl rounded-2xl border border-border/60 bg-background/70 backdrop-blur-2xl shadow-lg shadow-black/[0.03] dark:shadow-black/20 dark:border-white/[0.06]"
             : "border-b border-border/40 bg-background/80 backdrop-blur-xl"

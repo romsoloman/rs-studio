@@ -175,7 +175,7 @@
 
 - ❌ Playful design
 - ❌ Hidden credentials
-- ❌ AI purple/pink gradients
+- ❌ AI magenta-toned/pink gradients
 
 ### Additional Forbidden Patterns
 

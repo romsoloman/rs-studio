@@ -5,17 +5,10 @@ import { useTranslations } from "next-intl";
 import { Send, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useTheme } from "next-themes";
-import Cal from "@calcom/embed-react";
-
 export function ContactSection() {
   const t = useTranslations("Contact");
-  const tc = useTranslations("CalEmbed");
   const [submitted, setSubmitted] = useState(false);
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { setMounted(true); }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,33 +59,8 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right: Cal embed + form */}
-          <div className="reveal flex flex-col gap-8">
-            {/* Cal.com Embed */}
-            <div>
-              <p className="text-sm font-medium mb-4">{tc("calLabel")}</p>
-              {mounted && (
-                <Cal
-                  calLink="romsoloman/qualification"
-                  config={{
-                    layout: "month_view",
-                    theme: resolvedTheme === "dark" ? "dark" : "light",
-                  }}
-                  style={{ width: "100%", minHeight: "320px", overflow: "auto" }}
-                />
-              )}
-            </div>
-
-            {/* OR separator */}
-            <div className="flex items-center gap-4">
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground uppercase tracking-widest">
-                {tc("orSeparator")}
-              </span>
-              <div className="flex-1 h-px bg-border" />
-            </div>
-
-            {/* Form */}
+          {/* Right: form */}
+          <div className="reveal">
             {submitted ? (
               <div className="text-center py-16 rounded-sm border border-accent/20 bg-accent/5">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 text-accent mb-5">

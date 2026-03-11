@@ -5,16 +5,18 @@ const withNextIntl = createNextIntlPlugin();
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.sanity.io https://*.sanity.io;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://cdn.sanity.io;
+  img-src 'self' blob: data: https://cdn.sanity.io https://*.sanity.io;
   font-src 'self' data:;
   object-src 'none';
   base-uri 'self';
+  connect-src 'self' https://*.sanity.io;
+  frame-src 'self';
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-`
+`.replace(/\s{2,}/g, ' ').trim();
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -24,7 +26,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: cspHeader.replace(/\n/g, ''),
+            value: cspHeader,
           },
           {
             key: 'X-Content-Type-Options',
